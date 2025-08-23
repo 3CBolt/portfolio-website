@@ -15,11 +15,11 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-xl items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="max-w-6xl mx-auto px-5 flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-8 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block text-xl">
+            <span className="hidden font-bold sm:inline-block text-xl text-foreground">
               Portfolio
             </span>
           </Link>
@@ -29,10 +29,10 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'transition-colors hover:text-foreground/80',
+                  'transition-colors hover:text-accent focus-ring rounded-md px-2 py-1',
                   pathname === item.href
-                    ? 'text-foreground font-medium'
-                    : 'text-foreground/60'
+                    ? 'text-accent font-medium'
+                    : 'text-muted-foreground'
                 )}
               >
                 {item.name}
@@ -44,7 +44,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:hidden">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl">Portfolio</span>
+            <span className="font-bold text-xl text-foreground">Portfolio</span>
           </Link>
           <nav className="flex items-center space-x-4">
             {navigation.map((item) => (
@@ -52,10 +52,10 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'text-sm transition-colors hover:text-foreground/80',
+                  'text-sm transition-colors hover:text-accent focus-ring rounded-md px-2 py-1',
                   pathname === item.href
-                    ? 'text-foreground font-medium'
-                    : 'text-foreground/60'
+                    ? 'text-accent font-medium'
+                    : 'text-muted-foreground'
                 )}
               >
                 {item.name}

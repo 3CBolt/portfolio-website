@@ -1,5 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { CustomButton } from '@/components/ui/custom-button';
+import { CustomCard, CardHeader, CardContent } from '@/components/ui/custom-card';
+import { Section } from '@/components/ui/section';
+import { H1, H2, H3, Sub, Body, Meta } from '@/components/ui/typography';
 import Link from 'next/link';
 import { Mail, Github, Linkedin, MessageCircle, Download } from 'lucide-react';
 
@@ -34,68 +36,59 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="container max-w-screen-lg py-16">
+    <div>
       {/* Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-          Let's Work Together
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          I'm always interested in new opportunities and collaborations.
-          Whether you have a project in mind or just want to connect, I'd love to hear from you.
-        </p>
-      </div>
-
-      {/* Contact Methods */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
-        {contactMethods.map((method, index) => (
-          <Card key={index} className="text-center group hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <method.icon className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>{method.title}</CardTitle>
-              <CardDescription>{method.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button asChild variant="outline" className="w-full">
-                <Link href={method.href} target="_blank" rel="noopener noreferrer">
+      <Section 
+        title="Let's Work Together"
+        subtitle="I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to connect, I'd love to hear from you."
+      >
+        {/* Contact Methods */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mb-16">
+          {contactMethods.map((method, index) => (
+            <CustomCard key={index} hover className="text-center group">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                  <method.icon className="h-6 w-6 text-accent" />
+                </div>
+                <H3>{method.title}</H3>
+                <Body>{method.description}</Body>
+              </CardHeader>
+              <CardContent>
+                <CustomButton variant="secondary" href={method.href} external className="w-full">
                   {method.action}
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+                </CustomButton>
+              </CardContent>
+            </CustomCard>
+          ))}
+        </div>
 
-      {/* CTA Section */}
-      <div className="text-center bg-muted/50 rounded-2xl p-12">
-        <MessageCircle className="h-12 w-12 text-primary mx-auto mb-6" />
-        <h2 className="text-2xl font-bold mb-4">Ready to Start a Project?</h2>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-          I'm currently available for freelance work and full-time opportunities.
-          Let's discuss how we can work together.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="mailto:your-email@example.com">
+        {/* CTA Section */}
+        <div className="text-center bg-muted rounded-2xl p-12">
+          <MessageCircle className="h-12 w-12 text-accent mx-auto mb-6" />
+          <H2 className="mb-4">Ready to Start a Project?</H2>
+          <Body className="mb-8 max-w-md mx-auto">
+            I'm currently available for freelance work and full-time opportunities.
+            Let's discuss how we can work together.
+          </Body>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <CustomButton href="mailto:your-email@example.com" size="lg">
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
-            </Link>
-          </Button>
-          <Button variant="outline" size="lg">
-            <Download className="mr-2 h-5 w-5" />
-            Download Resume
-          </Button>
+            </CustomButton>
+            <CustomButton variant="secondary" size="lg">
+              <Download className="mr-2 h-5 w-5" />
+              Download Resume
+            </CustomButton>
+          </div>
         </div>
-      </div>
 
-      {/* Response Time */}
-      <div className="text-center mt-12">
-        <p className="text-sm text-muted-foreground">
-          I typically respond within 24 hours. Looking forward to hearing from you!
-        </p>
-      </div>
+        {/* Response Time */}
+        <div className="text-center mt-12">
+          <Meta>
+            I typically respond within 24 hours. Looking forward to hearing from you!
+          </Meta>
+        </div>
+      </Section>
     </div>
   );
 }

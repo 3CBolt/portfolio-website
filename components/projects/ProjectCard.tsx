@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Project } from '@/types/project';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { CustomCard, CardHeader, CardContent } from '@/components/ui/custom-card';
+import { H3, Meta } from '@/components/ui/typography';
+import { CustomButton } from '@/components/ui/custom-button';
 import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -11,35 +12,43 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <CustomCard hover className="group h-full overflow-hidden">
       <div className="aspect-video relative overflow-hidden bg-muted">
-        <Image
-          src={project.coverPath || 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800'}
-          alt={`${project.projectName} preview`}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        {project.coverPath ? (
+          <Image
+            src={project.coverPath}
+            alt={`${project.projectName} preview`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
+            <div className="text-4xl font-bold text-accent/20">
+              {project.projectName.charAt(0)}
+            </div>
+          </div>
+        )}
         {project.featured && (
-          <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
+          <div className="absolute top-3 left-3 bg-accent text-accent-foreground px-2 py-1 rounded-lg text-xs font-medium">
             Featured
-          </Badge>
+          </div>
         )}
       </div>
       
-      <CardHeader className="pb-2">
+      <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-xl group-hover:text-primary transition-colors">
+          <H3 className="group-hover:text-accent transition-colors line-clamp-1">
             <Link href={`/projects/${project.slug}`}>
               {project.projectName}
             </Link>
-          </CardTitle>
+          </H3>
           <div className="flex gap-2">
             {project.demoLink && (
               <Link
                 href={project.demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-accent transition-colors focus-ring rounded-md p-1"
               >
                 <ExternalLink className="h-4 w-4" />
               </Link>
@@ -49,37 +58,37 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-accent transition-colors focus-ring rounded-md p-1"
               >
                 <Github className="h-4 w-4" />
               </Link>
             )}
           </div>
         </div>
-        <CardDescription className="line-clamp-2">
+        <p className="text-muted-foreground line-clamp-2 mt-2">
           {project.oneLiner}
-        </CardDescription>
+        </p>
       </CardHeader>
       
-      <CardContent className="pt-0">
-        <div className="flex flex-wrap gap-1 mb-3">
+      <CardContent>
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.techSkills.slice(0, 3).map((tech) => (
-            <Badge key={tech} variant="secondary" className="text-xs">
+            <span key={tech} className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs font-medium">
               {tech}
-            </Badge>
+            </span>
           ))}
           {project.techSkills.length > 3 && (
-            <Badge variant="secondary" className="text-xs">
+            <span className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs font-medium">
               +{project.techSkills.length - 3}
-            </Badge>
+            </span>
           )}
         </div>
         
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <span>{project.role}</span>
-          <span>{project.dateRange}</span>
+        <div className="flex items-center justify-between">
+          <Meta>{project.role}</Meta>
+          <Meta>{project.dateRange}</Meta>
         </div>
       </CardContent>
-    </Card>
+    </CustomCard>
   );
 }

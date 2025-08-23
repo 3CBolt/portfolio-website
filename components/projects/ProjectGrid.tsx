@@ -1,5 +1,7 @@
 import { Project } from '@/types/project';
 import ProjectCard from './ProjectCard';
+import { EmptyState } from '@/components/ui/empty-state';
+import { FolderOpen } from 'lucide-react';
 
 interface ProjectGridProps {
   projects: Project[];
@@ -9,14 +11,16 @@ interface ProjectGridProps {
 export default function ProjectGrid({ projects, className = '' }: ProjectGridProps) {
   if (projects.length === 0) {
     return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground">No projects found.</p>
-      </div>
+      <EmptyState
+        icon={<FolderOpen className="w-12 h-12" />}
+        title="No projects found"
+        description="Check back soon for new projects and updates."
+      />
     );
   }
 
   return (
-    <div className={`grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 ${className}`}>
       {projects.map((project) => (
         <ProjectCard key={project.id} project={project} />
       ))}

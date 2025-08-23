@@ -1,5 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { CustomButton } from '@/components/ui/custom-button';
+import { CustomCard, CardHeader, CardContent } from '@/components/ui/custom-card';
+import { Section } from '@/components/ui/section';
+import { H1, H2, H3, Sub, Body } from '@/components/ui/typography';
 import Link from 'next/link';
 import { ArrowRight, Code, Palette, Rocket } from 'lucide-react';
 
@@ -28,121 +30,111 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="container max-w-screen-lg py-16">
+    <div>
       {/* Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-          About Me
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          I'm a passionate developer who loves creating digital experiences that make a difference.
-        </p>
-      </div>
-
-      {/* Main Content */}
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight mb-6">My Story</h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-muted-foreground mb-4">
-              Hello! I'm a full-stack developer with a passion for creating meaningful digital experiences.
-              My journey began with curiosity about how things work on the web, and it has evolved into
-              a career focused on building scalable, user-friendly applications.
-            </p>
-            <p className="text-muted-foreground mb-4">
-              With experience across the full development stack, I enjoy the challenge of turning complex
-              problems into simple, beautiful solutions. Whether it's architecting a robust backend API
-              or crafting an intuitive user interface, I approach each project with attention to detail
-              and a commitment to quality.
-            </p>
-            <p className="text-muted-foreground mb-6">
-              When I'm not coding, you'll find me exploring new technologies, contributing to open source
-              projects, or mentoring other developers. I believe in giving back to the community that has
-              taught me so much.
-            </p>
-          </div>
-          <Button asChild>
-            <Link href="/contact">
+      <Section 
+        title="About Me"
+        subtitle="I'm a passionate developer who loves creating digital experiences that make a difference."
+      >
+        {/* Main Content */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <H2 className="mb-6">My Story</H2>
+            <div className="space-y-4">
+              <Body>
+                Hello! I'm a full-stack developer with a passion for creating meaningful digital experiences.
+                My journey began with curiosity about how things work on the web, and it has evolved into
+                a career focused on building scalable, user-friendly applications.
+              </Body>
+              <Body>
+                With experience across the full development stack, I enjoy the challenge of turning complex
+                problems into simple, beautiful solutions. Whether it's architecting a robust backend API
+                or crafting an intuitive user interface, I approach each project with attention to detail
+                and a commitment to quality.
+              </Body>
+              <Body className="mb-6">
+                When I'm not coding, you'll find me exploring new technologies, contributing to open source
+                projects, or mentoring other developers. I believe in giving back to the community that has
+                taught me so much.
+              </Body>
+            </div>
+            <CustomButton href="/contact">
               Let's Work Together
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-        
-        {/* Placeholder for photo */}
-        <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-            <div className="text-8xl font-bold text-primary/30">YN</div>
+            </CustomButton>
+          </div>
+          
+          {/* Placeholder for photo */}
+          <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+              <div className="text-8xl font-bold text-accent/30">YN</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Values Section */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold tracking-tight text-center mb-4">
-          What Drives Me
-        </h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          These core values guide my approach to every project and collaboration.
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {values.map((value, index) => (
-            <Card key={index} className="text-center">
+        {/* Values Section */}
+        <div className="mb-16">
+          <H2 className="text-center mb-4">What Drives Me</H2>
+          <Body className="text-center mb-12 max-w-2xl mx-auto">
+            These core values guide my approach to every project and collaboration.
+          </Body>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {values.map((value, index) => (
+              <CustomCard key={index} className="text-center">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+                    <value.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <H3>{value.title}</H3>
+                </CardHeader>
+                <CardContent>
+                  <Body>
+                    {value.description}
+                  </Body>
+                </CardContent>
+              </CustomCard>
+            ))}
+          </div>
+        </div>
+
+        {/* Skills Section */}
+        <div>
+          <H2 className="text-center mb-12">Technical Skills</H2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <CustomCard>
               <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>{value.title}</CardTitle>
+                <H3>Frontend Development</H3>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
-                  {value.description}
-                </CardDescription>
+                <div className="flex flex-wrap gap-2">
+                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js', 'HTML5', 'CSS3', 'JavaScript'].map((skill) => (
+                    <span key={skill} className="bg-muted text-muted-foreground px-3 py-1.5 rounded-lg text-sm font-medium">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </CardContent>
-            </Card>
-          ))}
+            </CustomCard>
+            
+            <CustomCard>
+              <CardHeader>
+                <H3>Backend Development</H3>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Express.js', 'REST APIs', 'GraphQL', 'AWS'].map((skill) => (
+                    <span key={skill} className="bg-muted text-muted-foreground px-3 py-1.5 rounded-lg text-sm font-medium">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </CustomCard>
+          </div>
         </div>
-      </section>
-
-      {/* Skills Section */}
-      <section>
-        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">
-          Technical Skills
-        </h2>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Frontend Development</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js', 'HTML5', 'CSS3', 'JavaScript'].map((skill) => (
-                  <span key={skill} className="bg-secondary text-secondary-foreground px-3 py-1 rounded-md text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle>Backend Development</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Express.js', 'REST APIs', 'GraphQL', 'AWS'].map((skill) => (
-                  <span key={skill} className="bg-secondary text-secondary-foreground px-3 py-1 rounded-md text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      </Section>
     </div>
   );
 }
