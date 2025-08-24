@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        retro: ['var(--font-press-start)', 'monospace'],
+      },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
@@ -19,6 +23,9 @@ const config: Config = {
         'accent-foreground': 'rgb(var(--accent-foreground) / <alpha-value>)',
         destructive: 'rgb(var(--destructive) / <alpha-value>)',
         'destructive-foreground': 'rgb(var(--destructive-foreground) / <alpha-value>)',
+      },
+      screens: {
+        'retro': { 'raw': '.retro' },
       },
       boxShadow: {
         'sm': 'var(--shadow-sm)',

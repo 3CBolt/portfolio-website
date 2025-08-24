@@ -1,10 +1,20 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Press_Start_2P } from 'next/font/google';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const pressStart2P = Press_Start_2P({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-press-start',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -34,14 +44,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1 max-w-6xl mx-auto px-5 w-full">
-            {children}
-          </main>
-          <Footer />
-        </div>
+      <body className={`${inter.variable} ${pressStart2P.variable} font-sans`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          themes={['light', 'dark', 'retro']}
+          enableSystem={false}
+        >
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1 max-w-6xl mx-auto px-5 w-full">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
