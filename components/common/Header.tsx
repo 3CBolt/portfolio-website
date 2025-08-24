@@ -21,7 +21,7 @@ export default function Header() {
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-8 flex items-center space-x-2">
             <span className="hidden font-bold sm:inline-block text-xl text-foreground retro:font-retro retro:text-sm">
-              Portfolio
+              PORTFOLIO
             </span>
           </Link>
           <nav className="flex items-center gap-6 text-sm">
@@ -49,7 +49,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:hidden">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl text-foreground retro:font-retro retro:text-sm">Portfolio</span>
+            <span className="font-bold text-xl text-foreground retro:font-retro retro:text-sm">PORTFOLIO</span>
           </Link>
           <nav className="flex items-center space-x-2">
             {navigation.map((item) => (

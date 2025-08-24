@@ -23,7 +23,7 @@ export function CustomButton({
   external = false
 }: ButtonProps) {
   const baseClasses = cn(
-    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus-ring retro:rounded-none retro:font-retro retro:text-xs retro:border-2',
+    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus-ring retro:rounded-none retro:font-retro retro:text-xs retro:border-2 retro:nes-btn',
     'disabled:opacity-50 disabled:cursor-not-allowed',
     {
       'px-3 py-2 text-sm': size === 'sm',
@@ -31,9 +31,9 @@ export function CustomButton({
       'px-6 py-3 text-lg': size === 'lg',
     },
     {
-      'bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md retro:border-white retro:shadow-none': variant === 'primary',
-      'bg-muted text-foreground hover:bg-muted/80 border border-border retro:border-white retro:shadow-none': variant === 'secondary',
-      'text-accent hover:text-accent/80 hover:bg-accent/5 retro:border-transparent retro:hover:border-white': variant === 'ghost',
+      'bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md retro:border-white retro:shadow-none retro:nes-btn-primary': variant === 'primary',
+      'bg-muted text-foreground hover:bg-muted/80 border border-border retro:border-white retro:shadow-none retro:bg-background retro:text-foreground retro:border-white': variant === 'secondary',
+      'text-accent hover:text-accent/80 hover:bg-accent/5 retro:border-transparent retro:hover:border-white retro:bg-transparent retro:border-white': variant === 'ghost',
     },
     className
   );

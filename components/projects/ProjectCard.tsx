@@ -12,14 +12,19 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <CustomCard hover className="group h-full overflow-hidden">
+    <CustomCard hover className="group h-full overflow-hidden retro:cartridge-card">
+      {project.featured && (
+        <div className="retro:label-strip retro:block hidden">
+          Featured
+        </div>
+      )}
       <div className="aspect-video relative overflow-hidden bg-muted">
         {project.coverPath ? (
           <Image
             src={project.coverPath}
             alt={`${project.projectName} preview`}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-300 group-hover:scale-105 retro:pixelate"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">

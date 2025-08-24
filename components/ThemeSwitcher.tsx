@@ -65,12 +65,12 @@ export function ThemeSwitcher() {
                   }}
                   className={cn(
                     "flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-muted transition-colors first:rounded-t-lg last:rounded-b-lg",
-                    "retro:first:rounded-none retro:last:rounded-none retro:hover:bg-gray-900",
-                    isActive && "bg-accent text-accent-foreground retro:bg-red-600 retro:text-white"
+                    "retro:first:rounded-none retro:last:rounded-none retro:hover:bg-muted retro:border-b retro:border-white retro:last:border-b-0",
+                    isActive && "bg-accent text-accent-foreground"
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  <span className="retro:font-retro retro:text-xs">
+                  <span className="retro:font-retro retro:text-xs retro:uppercase">
                     {themeOption.label}
                   </span>
                 </button>

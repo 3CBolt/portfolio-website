@@ -21,7 +21,7 @@ export default async function HomePage() {
         <div className="max-w-4xl mx-auto">
           <H1 className="mb-6">
             Hi, I'm{' '}
-            <span className="text-accent">Your Name</span>
+            <span className="text-accent retro:text-accent">Your Name</span>
           </H1>
           <Sub className="mb-8 max-w-3xl mx-auto">
             Full-stack developer and designer creating digital experiences that matter.

@@ -37,15 +37,16 @@
   }
   
   .retro {
-    --background: 0 0 0; /* black */
-    --foreground: 255 255 255; /* white */
-    --muted: 31 31 31; /* gray-800 */
-    --muted-foreground: 156 163 175; /* gray-400 */
-    --border: 255 255 255; /* white */
-    --accent: 220 38 38; /* NES red */
+    --background: 10 10 10; /* near black #0a0a0a */
+    --foreground: 245 245 245; /* off-white #f5f5f5 */
+    --muted: 40 40 40; /* dark gray */
+    --muted-foreground: 180 180 180; /* light gray */
+    --border: 245 245 245; /* off-white for borders */
+    --accent: 230 0 18; /* NES red #e60012 */
     --accent-foreground: 255 255 255; /* white */
     --destructive: 239 68 68; /* red-500 */
     --destructive-foreground: 255 255 255; /* white */
+    --radius: 0px; /* no border radius */
   }
 }
 
@@ -62,13 +63,16 @@
   /* Retro theme overrides */
   .retro {
     font-family: var(--font-press-start), monospace;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
   
   .retro * {
     border-radius: 0 !important;
   }
   
-  /* Optional CRT scanline effect for retro theme */
+  /* CRT scanline effect for retro theme */
   .retro::before {
     content: '';
     position: fixed;
@@ -80,11 +84,103 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(255, 255, 255, 0.03) 2px,
-      rgba(255, 255, 255, 0.03) 4px
+      rgba(0, 255, 0, 0.02) 2px,
+      rgba(0, 255, 0, 0.02) 4px
     );
     pointer-events: none;
-    z-index: 1000;
+    z-index: 9999;
+  }
+  
+  /* CRT vignette effect */
+  .retro::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 70%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+  
+  /* Disable effects for reduced motion and mobile */
+  @media (prefers-reduced-motion: reduce) {
+    .retro::before,
+    .retro::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .retro::before,
+    .retro::after {
+      opacity: 0.3;
+    }
+  }
+  
+  /* Retro utility classes */
+  .pixelate {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  .pixel-border {
+    border: 2px solid rgb(var(--border));
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  }
+  
+  .retro-title {
+    text-shadow: 
+      2px 0px 0px rgb(var(--accent)),
+      0px 2px 0px rgb(var(--accent)),
+      2px 2px 0px rgb(var(--accent)),
+      4px 4px 0px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.1em;
+  }
+  
+  .nes-btn {
+    @apply uppercase font-bold text-sm px-4 py-2 border-2 border-white bg-background text-foreground;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+    transition: all 0.1s ease;
+    letter-spacing: 0.05em;
+  }
+  
+  .nes-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+  }
+  
+  .nes-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  }
+  
+  .nes-btn-primary {
+    @apply bg-accent text-accent-foreground;
+  }
+  
+  .cartridge-card {
+    @apply bg-background border-2 border-white overflow-hidden;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+    position: relative;
+  }
+  
+  .cartridge-card .label-strip {
+    @apply bg-accent text-accent-foreground px-3 py-1 text-xs font-bold uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid white;
+  }
+  
+  .cartridge-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8);
   }
   
   /* Focus styles */
