@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Inter, Press_Start_2P } from 'next/font/google';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { RetroProvider } from '@/components/retro/RetroProvider';
-import { RetroMount } from '@/components/retro/RetroMount';
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import StartMount from '@/components/retro/StartMount';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -46,8 +46,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${pressStart2P.variable} font-sans`}>
-        <RetroProvider>
-          <RetroMount />
+        <ThemeProvider>
+          <StartMount />
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1 max-w-6xl mx-auto px-5 w-full">
@@ -55,7 +55,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
-        </RetroProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

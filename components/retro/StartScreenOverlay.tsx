@@ -74,8 +74,8 @@ export default function StartScreenOverlay({ onClose }: { onClose: () => void })
         className="relative mx-4 w-[min(720px,92vw)] rounded-none border-2 border-[#c96d17] bg-[#f79e3b] p-6 shadow-[6px_6px_0_#000]"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 id="retro-title" className="mb-6 text-center text-3xl text-white retro-emboss">
-          YOUR NAME
+        <h1 id="retro-title" className="mb-6 text-center text-2xl sm:text-3xl text-white retro-emboss">
+          PORTFOLIO
         </h1>
         <p className="mb-4 text-center text-sm text-black/80">Press ENTER to start</p>
 
@@ -102,7 +102,7 @@ export default function StartScreenOverlay({ onClose }: { onClose: () => void })
           ))}
         </div>
 
-        <p className="mt-6 text-center text-[10px] text-black/70">
+        <p className="mt-6 text-center text-[10px] text-black/70">© {new Date().getFullYear()} Portfolio</p>
           © {new Date().getFullYear()} Your Name
         </p>
       </div>
