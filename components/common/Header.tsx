@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import RetroToggle from '@/components/retro/RetroToggle';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -42,8 +42,8 @@ export default function Header() {
           </nav>
         </div>
         
-        <div className="ml-auto">
-          <ThemeSwitcher />
+        <div className="ml-auto flex items-center gap-4">
+          <RetroToggle />
         </div>
         
         {/* Mobile Navigation */}
@@ -66,7 +66,7 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <ThemeSwitcher />
+            <RetroToggle />
           </nav>
         </div>
       </div>

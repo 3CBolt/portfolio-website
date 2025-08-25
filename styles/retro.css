@@ -1,0 +1,106 @@
+/* Only active in retro theme */
+html[data-theme='retro'] {
+  font-family: 'Press Start 2P', monospace !important;
+  background: #0a0a0a !important;
+  color: #f5f5f5 !important;
+}
+
+html[data-theme='retro'] img,
+html[data-theme='retro'] canvas {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+html[data-theme='retro'] * {
+  border-radius: 0 !important;
+}
+
+html[data-theme='retro'] h1, 
+html[data-theme='retro'] h2, 
+html[data-theme='retro'] h3 {
+  text-shadow: 2px 2px #e60012;
+}
+
+/* Scanlines layer for overlay */
+.retro-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.12) 0px,
+    rgba(0,0,0,0.12) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retro-scanlines { 
+    background: none; 
+  }
+}
+
+.retro-emboss {
+  text-shadow:
+    2px 2px #d05e13,
+    4px 4px #b04f10;
+}
+
+/* NES Button styles */
+html[data-theme='retro'] .nes-btn {
+  background: #e60012 !important;
+  color: white !important;
+  border: 2px solid white !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.1s ease;
+}
+
+html[data-theme='retro'] .nes-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+}
+
+html[data-theme='retro'] .nes-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Cartridge card styles */
+html[data-theme='retro'] .cartridge-card {
+  background: #0a0a0a !important;
+  border: 2px solid white !important;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+html[data-theme='retro'] .cartridge-card .label-strip {
+  background: #e60012 !important;
+  color: white !important;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid white;
+}
+
+html[data-theme='retro'] .cartridge-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Pixel border utility */
+.pixel-border {
+  border: 2px solid white !important;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Pixelate utility */
+.pixelate {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
