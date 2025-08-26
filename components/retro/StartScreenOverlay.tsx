@@ -102,8 +102,8 @@ export default function StartScreenOverlay({ onClose }: { onClose: () => void })
           ))}
         </div>
 
-        <p className="mt-6 text-center text-[10px] text-black/70">© {new Date().getFullYear()} Portfolio</p>
-          © {new Date().getFullYear()} Your Name
+        <p className="mt-6 text-center text-[10px] text-black/70">
+          © {new Date().getFullYear()} Cameron Bolton
         </p>
       </div>
     </div>
