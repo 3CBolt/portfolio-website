@@ -48,7 +48,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${pressStart2P.variable} font-sans`}>
         <ThemeProvider>
           <StartMount />
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col retro-background">
             <Header />
             <main className="flex-1 max-w-6xl mx-auto px-5 w-full">
               {children}

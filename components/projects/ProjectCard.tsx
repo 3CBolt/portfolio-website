@@ -12,9 +12,9 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <CustomCard hover className="group h-full overflow-hidden">
+    <CustomCard hover className="group h-full overflow-hidden retro:cartridge-card">
       {project.featured && (
-        <div className="retro:label-strip hidden retro:block">
+        <div className="label-strip hidden retro:block">
           Featured
         </div>
       )}

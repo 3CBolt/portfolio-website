@@ -62,7 +62,7 @@
   
   /* Retro theme overrides */
   .retro {
-    font-family: var(--font-press-start), monospace;
+    font-family: var(--font-press-start), 'Press Start 2P', monospace;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;

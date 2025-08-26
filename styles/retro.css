@@ -6,8 +6,8 @@
 }
 
 html[data-theme='retro'] {
-  font-family: 'Press Start 2P', monospace !important;
-  background: #0a0a0a !important;
+  font-family: var(--font-press-start), 'Press Start 2P', monospace !important;
+  background: #7ec0ff !important;
   color: #f5f5f5 !important;
 }
 
@@ -25,80 +25,249 @@ html[data-theme='retro'] canvas {
 html[data-theme='retro'] h1, 
 html[data-theme='retro'] h2, 
 html[data-theme='retro'] h3 {
-  text-shadow: 2px 2px #e60012;
+  text-shadow: 2px 2px #e60012, 4px 4px #0a0a0a;
+  letter-spacing: 0.1em;
+}
+
+/* Global retro background with brick ground */
+html[data-theme='retro'] .retro-background {
+  background: #7ec0ff;
+  position: relative;
+}
+
+html[data-theme='retro'] .retro-background::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: repeating-linear-gradient(
+    to right,
+    #b84c0f 0px,
+    #b84c0f 32px,
+    #d97c36 32px,
+    #d97c36 34px,
+    #b84c0f 34px,
+    #b84c0f 66px,
+    #d97c36 66px,
+    #d97c36 68px
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* NES-ish buttons/links */
-html[data-theme='retro'] .nes-btn {
-  text-transform: uppercase; 
-  letter-spacing: .05em;
+html[data-theme='retro'] :where(button, .nes-btn, a[class*="button"]) {
+  text-transform: uppercase !important; 
+  letter-spacing: .05em !important;
   border: 2px solid #fff !important; 
   background: #e60012 !important; 
   color: #fff !important;
-  box-shadow: 3px 3px 0 #000; 
-  transition: transform .08s ease-out;
+  box-shadow: 3px 3px 0 #0a0a0a !important; 
+  transition: transform .08s ease-out !important;
+  font-family: var(--font-press-start), 'Press Start 2P', monospace !important;
+  font-size: 0.75rem !important;
+  padding: 8px 16px !important;
 }
 
-html[data-theme='retro'] .nes-btn:hover { 
-  transform: translateY(-2px); 
+html[data-theme='retro'] :where(button, .nes-btn, a[class*="button"]):hover { 
+  transform: translateY(-2px) !important; 
+  box-shadow: 4px 4px 0 #0a0a0a !important;
 }
 
-html[data-theme='retro'] .nes-btn:active { 
-  transform: translate(1px, 1px); 
-  box-shadow: 2px 2px 0 #000;
+html[data-theme='retro'] :where(button, .nes-btn, a[class*="button"]):active { 
+  transform: translate(1px, 1px) !important; 
+  box-shadow: 2px 2px 0 #0a0a0a !important;
 }
 
 /* NES secondary buttons */
-html[data-theme='retro'] .nes-btn-secondary {
+html[data-theme='retro'] :where(button[class*="secondary"], .nes-btn-secondary) {
   background: #666 !important;
   border: 2px solid #fff !important;
+}
+
+/* Cards and panels */
+html[data-theme='retro'] :where(.card, [class*="card"], article, section[class*="bg"]) {
+  background: #0a0a0a !important;
+  border: 2px solid #fff !important;
+  box-shadow: 6px 6px 0 #000 !important;
+  color: #f5f5f5 !important;
+}
+
+html[data-theme='retro'] :where(.card, [class*="card"], article):hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 7px 7px 0 #000 !important;
 }
 
 /* Cartridge cards */
 html[data-theme='retro'] .cartridge-card {
   background: #0a0a0a !important;
   border: 2px solid #fff !important;
-  box-shadow: 4px 4px 0 #000;
+  box-shadow: 6px 6px 0 #000 !important;
+  overflow: hidden !important;
 }
 
 html[data-theme='retro'] .cartridge-card:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 #000;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 8px 8px 0 #000 !important;
 }
 
 html[data-theme='retro'] .label-strip {
   background: #e60012 !important;
   color: #fff !important;
-  border-bottom: 2px solid #fff;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  border-bottom: 2px solid #fff !important;
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.625rem !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
 
-/* CRT scanlines helper (used by overlay) */
+/* Navigation and header */
+html[data-theme='retro'] header {
+  background: #f79e3b !important;
+  border-bottom: 2px solid #c96d17 !important;
+  box-shadow: 0 4px 0 #0a0a0a !important;
+}
+
+html[data-theme='retro'] nav a {
+  color: #0a0a0a !important;
+  text-shadow: 1px 1px #fff !important;
+  border: 2px solid transparent !important;
+  padding: 4px 8px !important;
+  font-size: 0.75rem !important;
+}
+
+html[data-theme='retro'] nav a:hover,
+html[data-theme='retro'] nav a[class*="active"] {
+  background: #e60012 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  text-shadow: none !important;
+  box-shadow: 2px 2px 0 #0a0a0a !important;
+}
+
+/* Inputs and form elements */
+html[data-theme='retro'] :where(input, textarea, select) {
+  background: #0a0a0a !important;
+  border: 2px solid #fff !important;
+  color: #f5f5f5 !important;
+  font-family: var(--font-press-start), 'Press Start 2P', monospace !important;
+  font-size: 0.75rem !important;
+  padding: 8px !important;
+  box-shadow: inset 2px 2px 0 #333 !important;
+}
+
+html[data-theme='retro'] :where(input, textarea, select):focus {
+  outline: none !important;
+  border-color: #e60012 !important;
+  box-shadow: inset 2px 2px 0 #333, 0 0 0 2px #e60012 !important;
+}
+
+/* Badges and chips */
+html[data-theme='retro'] :where(.badge, [class*="badge"], .chip, [class*="chip"], span[class*="bg-"]) {
+  background: #666 !important;
+  color: #f5f5f5 !important;
+  border: 1px solid #fff !important;
+  font-family: var(--font-press-start), 'Press Start 2P', monospace !important;
+  font-size: 0.625rem !important;
+  padding: 2px 6px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Text and typography overrides */
+html[data-theme='retro'] p,
+html[data-theme='retro'] span,
+html[data-theme='retro'] div {
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.025em !important;
+}
+
+html[data-theme='retro'] h1 {
+  font-size: 1.5rem !important;
+}
+
+html[data-theme='retro'] h2 {
+  font-size: 1.25rem !important;
+}
+
+html[data-theme='retro'] h3 {
+  font-size: 1rem !important;
+}
+
+/* Footer */
+html[data-theme='retro'] footer {
+  background: #0a0a0a !important;
+  border-top: 2px solid #fff !important;
+  color: #f5f5f5 !important;
+}
+
+/* Links */
+html[data-theme='retro'] a:not([class*="button"]) {
+  color: #e60012 !important;
+  text-decoration: underline !important;
+}
+
+html[data-theme='retro'] a:not([class*="button"]):hover {
+  color: #ff1a2e !important;
+  text-shadow: 1px 1px #0a0a0a !important;
+}
+
+/* CRT scanlines helper (used by overlay and global) */
 .retro-scanlines {
   pointer-events: none;
   background: repeating-linear-gradient(
     to bottom, 
-    rgba(0,0,0,.12) 0px, 
-    rgba(0,0,0,.12) 1px, 
+    rgba(0,0,0,.08) 0px, 
+    rgba(0,0,0,.08) 1px, 
     transparent 2px, 
     transparent 3px
   );
   mix-blend-mode: multiply;
 }
 
+html[data-theme='retro']::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
 @media (prefers-reduced-motion: reduce) { 
   .retro-scanlines { 
-    background: none; 
-  } 
+    background: none !important; 
+  }
+  
+  html[data-theme='retro']::before {
+    display: none !important;
+  }
+  
+  html[data-theme='retro'] :where(button, .nes-btn, a[class*="button"]):hover { 
+    transform: none !important; 
+  }
+  
+  html[data-theme='retro'] :where(.card, [class*="card"], article):hover {
+    transform: none !important;
+  }
 }
 
 /* Title emboss helper */
 .retro-emboss { 
-  text-shadow: 2px 2px #d05e13, 4px 4px #b04f10; 
+  text-shadow: 2px 2px #d05e13, 4px 4px #b04f10 !important; 
 }
 
 /* Retro text colors */
@@ -118,11 +287,32 @@ html[data-theme='retro'] .border {
   border-color: #fff !important;
 }
 
-/* Retro links */
-html[data-theme='retro'] a {
-  color: #e60012 !important;
-}
-
-html[data-theme='retro'] a:hover {
-  color: #ff1a2e !important;
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  html[data-theme='retro'] h1 {
+    font-size: 1.25rem !important;
+  }
+  
+  html[data-theme='retro'] h2 {
+    font-size: 1rem !important;
+  }
+  
+  html[data-theme='retro'] h3 {
+    font-size: 0.875rem !important;
+  }
+  
+  html[data-theme='retro'] p,
+  html[data-theme='retro'] span,
+  html[data-theme='retro'] div {
+    font-size: 0.75rem !important;
+  }
+  
+  html[data-theme='retro'] :where(button, .nes-btn, a[class*="button"]) {
+    font-size: 0.625rem !important;
+    padding: 6px 12px !important;
+  }
+  
+  html[data-theme='retro']::before {
+    opacity: 0.5 !important;
+  }
 }

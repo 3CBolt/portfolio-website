@@ -30,6 +30,7 @@ function applyHtmlFlags(next: Theme) {
   if (next === 'retro') {
     html.setAttribute('data-theme', 'retro');
     html.classList.remove('dark'); // Ensure retro doesn't inherit dark styles
+    html.classList.remove('dark'); // Ensure retro doesn't inherit dark styles
   } else {
     html.removeAttribute('data-theme');
   }
@@ -64,8 +65,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     applyHtmlFlags(t);
     if (t === 'retro') {
       loadRetroCss();
+      // Check if we should show start screen
+      const url = new URL(window.location.href);
+      const force = url.searchParams.get('start') === '1';
       const dismissed = localStorage.getItem('retroStartDismissed') === '1';
-      if (!dismissed) {
+      if (force || !dismissed) {
         setShowStart(true);
       }
     } else {

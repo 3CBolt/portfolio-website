@@ -19,7 +19,7 @@ export function H1({ children, className, ...props }: TypographyProps) {
 export function H2({ children, className, ...props }: TypographyProps) {
   return (
     <h2 className={cn(
-      'text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground retro:text-xl retro:md:text-2xl retro:lg:text-3xl',
+      'text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground retro:retro-title retro:text-xl retro:md:text-2xl retro:lg:text-3xl',
       className
     )} {...props}>
       {children}
@@ -30,7 +30,7 @@ export function H2({ children, className, ...props }: TypographyProps) {
 export function H3({ children, className, ...props }: TypographyProps) {
   return (
     <h3 className={cn(
-      'text-xl sm:text-2xl font-semibold tracking-tight text-foreground retro:text-lg retro:md:text-xl',
+      'text-xl sm:text-2xl font-semibold tracking-tight text-foreground retro:retro-title retro:text-lg retro:md:text-xl',
       className
     )} {...props}>
       {children}
