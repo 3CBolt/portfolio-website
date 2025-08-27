@@ -36,7 +36,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div>
+    <div className="px-5">
       {/* Header */}
       <Section 
         title="Let's Work Together"

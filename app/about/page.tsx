@@ -30,7 +30,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div>
+    <div className="px-5">
       {/* Header */}
       <Section 
         title="About Me"

@@ -15,7 +15,7 @@ export default async function HomePage() {
   const featuredProjects = await getFeaturedProjects();
 
   return (
-    <div>
+    <div className="px-5">
       {/* Hero Section */}
       <Section className="text-center">
         <div className="max-w-4xl mx-auto">

@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   }
 
   return (
-    <div className="py-8">
+    <div className="px-5 py-8">
       {/* Back Button */}
       <CustomButton variant="ghost" href="/projects" className="mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" />

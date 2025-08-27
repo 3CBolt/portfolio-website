@@ -24,7 +24,6 @@ export function CustomButton({
 }: ButtonProps) {
   const baseClasses = cn(
     'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus-ring retro:rounded-none retro:font-retro retro:text-xs retro:border-2 retro:nes-btn',
-    'retro:nes-btn',
     'disabled:opacity-50 disabled:cursor-not-allowed',
     {
       'px-3 py-2 text-sm': size === 'sm',

@@ -12,17 +12,19 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <Section 
-      title="My Projects"
-      subtitle="A collection of my work spanning web applications, mobile apps, and design projects. Each project represents a unique challenge and learning experience."
-    >
-      <div className="mb-8">
-        <Meta>
-          {projects.length} {projects.length === 1 ? 'project' : 'projects'} found
-        </Meta>
-      </div>
+    <div className="px-5">
+      <Section 
+        title="My Projects"
+        subtitle="A collection of my work spanning web applications, mobile apps, and design projects. Each project represents a unique challenge and learning experience."
+      >
+        <div className="mb-8">
+          <Meta>
+            {projects.length} {projects.length === 1 ? 'project' : 'projects'} found
+          </Meta>
+        </div>
 
-      <ProjectGrid projects={projects} />
-    </Section>
+        <ProjectGrid projects={projects} />
+      </Section>
+    </div>
   );
 }

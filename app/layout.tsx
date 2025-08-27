@@ -50,8 +50,10 @@ export default function RootLayout({
           <StartMount />
           <div className="min-h-screen flex flex-col retro-background">
             <Header />
-            <main className="flex-1 max-w-6xl mx-auto px-5 w-full">
-              {children}
+            <main className="flex-1 max-w-6xl mx-auto w-full">
+              <div className="retro-surface">
+                {children}
+              </div>
             </main>
             <Footer />
           </div>
