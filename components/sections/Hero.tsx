@@ -9,11 +9,11 @@ export default function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      {/* Background: stars + subtle gradient for readability */}
-      <StarsBackground className="absolute inset-0 -z-10" />
+      {/* Background: stars + subtle gradient for readability (hidden in NES mode) */}
+      <StarsBackground className="absolute inset-0 -z-10 retro:hidden" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/50 to-background/90"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/50 to-background/90 retro:hidden"
       />
 
       {/* Foreground */}
