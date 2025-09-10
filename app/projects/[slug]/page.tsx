@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             <H1 className="mb-4">
               {project.title}
             </H1>
-            {(project.status === 'Completed' || project.status === 'In Progress') && (
+            {(project.status === 'Completed' || project.status === 'In Progress' || project.status === 'Shipped') && (
               <div className="inline-block bg-accent text-accent-foreground px-3 py-1 rounded-lg text-sm font-medium mb-4">
                 {project.status} Project
               </div>

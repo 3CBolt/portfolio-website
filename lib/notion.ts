@@ -6,7 +6,7 @@ export const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   summary: z.string(),
-  status: z.enum(['Completed','In Progress','Planned']).default('Planned'),
+  status: z.enum(['Completed','In Progress','Planned','Shipped']).default('Planned'),
   tags: z.array(z.string()).default([]),
   role: z.string().optional(),
   dates: z.object({
@@ -14,8 +14,8 @@ export const projectSchema = z.object({
     end: z.string().optional(),
   }).default({}),
   impact: z.string().optional(),
-  links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
-  coverImage: z.string().url().optional(),
+  links: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
+  coverImage: z.string().optional(),
   caseStudyUrl: z.string().url().optional(),
   techStack: z.array(z.string()).default([]),
   metrics: z.array(z.string()).optional(),
@@ -31,6 +31,11 @@ const DB_ID = process.env.NOTION_PROJECTS_DB_ID!;
 export function projectFromNotion(page: PageObjectResponse): Project {
   const props: any = (page as any).properties ?? {};
   const get = (name: string) => props[name];
+  
+  // Debug: Log available properties for first project
+  if (Math.random() < 0.1) { // Only log occasionally to avoid spam
+    console.log('Available properties:', Object.keys(props));
+  }
 
   const title = get('Project Name')?.title?.[0]?.plain_text ?? '';
   const summary = get('Short Description')?.rich_text?.[0]?.plain_text ?? '';
@@ -96,8 +101,15 @@ export async function getProjects(): Promise<Project[]> {
     });
 
     const projects = (response.results as PageObjectResponse[])
-      .map(projectFromNotion)
-      .filter(p => !!p.title && !!p.summary);
+      .map((page, index) => {
+        try {
+          return projectFromNotion(page);
+        } catch (error) {
+          console.warn(`Error processing project ${index}:`, error);
+          return null;
+        }
+      })
+      .filter((p): p is Project => p !== null && !!p.title && !!p.summary);
 
     return projects;
   } catch (error) {
@@ -119,7 +131,7 @@ export async function getProjects(): Promise<Project[]> {
 // Legacy compatibility functions
 export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects();
-  return projects.filter(project => project.status === 'Completed' || project.status === 'In Progress');
+  return projects.filter(project => project.status === 'Completed' || project.status === 'In Progress' || project.status === 'Shipped');
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
