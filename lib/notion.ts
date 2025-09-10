@@ -6,7 +6,7 @@ export const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   summary: z.string(),
-  status: z.enum(['Completed','In Progress','Planned','Shipped']).default('Planned'),
+  status: z.enum(['Complete','Ideation','Shipped']).default('Ideation'),
   tags: z.array(z.string()).default([]),
   role: z.string().optional(),
   dates: z.object({
@@ -32,16 +32,12 @@ export function projectFromNotion(page: PageObjectResponse): Project {
   const props: any = (page as any).properties ?? {};
   const get = (name: string) => props[name];
   
-  // Debug: Log available properties for first project
-  if (Math.random() < 0.1) { // Only log occasionally to avoid spam
-    console.log('Available properties:', Object.keys(props));
-  }
 
   const title = get('Project Name')?.title?.[0]?.plain_text ?? '';
   const summary = get('Short Description')?.rich_text?.[0]?.plain_text ?? '';
-  const status = get('Status')?.select?.name ?? 'Prototype';
-  const tags = (get('Tech/Skills')?.multi_select ?? []).map((t: any) => t.name);
-  const role = get('Role')?.rich_text?.[0]?.plain_text ?? undefined;
+  const status = get('Status')?.select?.name ?? 'Ideation';
+  const tags = (get('Tech Stack')?.multi_select ?? []).map((t: any) => t.name);
+  const role = (get('Role')?.multi_select ?? []).map((r: any) => r.name).join(', ') || undefined;
   const start = get('Date Range')?.date?.start ?? undefined;
   const end = get('Date Range')?.date?.end ?? undefined;
   const impact = get('Impact')?.rich_text?.[0]?.plain_text ?? undefined;
@@ -51,7 +47,7 @@ export function projectFromNotion(page: PageObjectResponse): Project {
     get('CoverImage')?.files?.[0]?.file?.url ??
     undefined;
   const caseStudyUrl = get('CaseStudyURL')?.url ?? undefined;
-  const techStack = (get('Tech/Skills')?.multi_select ?? []).map((t: any) => t.name);
+  const techStack = (get('Tech Stack')?.multi_select ?? []).map((t: any) => t.name);
   const metrics = (get('Metrics')?.rich_text ?? []).map((r: any) => r.plain_text);
   const responsibilities = (get('Responsibilities')?.rich_text ?? []).map((r: any) => r.plain_text);
   const outcome = get('Outcome')?.rich_text?.[0]?.plain_text ?? undefined;
@@ -131,7 +127,7 @@ export async function getProjects(): Promise<Project[]> {
 // Legacy compatibility functions
 export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects();
-  return projects.filter(project => project.status === 'Completed' || project.status === 'In Progress' || project.status === 'Shipped');
+  return projects.filter(project => project.status === 'Complete' || project.status === 'Shipped');
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
