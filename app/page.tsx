@@ -1,6 +1,6 @@
 import { getProjects } from '@/lib/notion';
 import Hero from '@/components/sections/Hero';
-import About from '@/components/sections/About';
+import HomeAboutTeaser from '@/components/sections/HomeAboutTeaser';
 import ProjectsGrid from '@/components/projects/ProjectsGrid';
 import { Section } from '@/components/ui/section';
 import { H2, Body } from '@/components/ui/typography';
@@ -19,10 +19,11 @@ export default async function Page() {
     <>
       <Hero />
       <div className="px-5">
-        <About />
         <Section>
           <ProjectsGrid initial={projects} />
         </Section>
+        
+        <HomeAboutTeaser />
         
         {/* Contact Section */}
         <section id="contact" className="mt-16">
