@@ -6,7 +6,7 @@ export const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   summary: z.string(),
-  status: z.enum(['Complete','Ideation','Shipped']).default('Ideation'),
+  status: z.enum(['Complete','Ideation','Shipped','In Progress']).default('Ideation'),
   tags: z.array(z.string()).default([]),
   role: z.string().optional(),
   dates: z.object({
@@ -127,7 +127,7 @@ export async function getProjects(): Promise<Project[]> {
 // Legacy compatibility functions
 export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects();
-  return projects.filter(project => project.status === 'Complete' || project.status === 'Shipped');
+  return projects.filter(project => project.status === 'Complete' || project.status === 'Shipped' || project.status === 'In Progress');
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
