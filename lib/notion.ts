@@ -89,15 +89,8 @@ export async function getProjects(): Promise<Project[]> {
   try {
     const response = await notion.databases.query({
       database_id: DB_ID,
-      filter: {
-        or: [
-          { property: 'Status', select: { equals: 'Completed' } },
-          { property: 'Status', select: { equals: 'In Progress' } },
-        ],
-      },
       sorts: [
         { property: 'Date Range', direction: 'descending' },
-        { property: 'Impact', direction: 'descending' },
       ],
       page_size: 12,
     });
