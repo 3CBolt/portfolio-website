@@ -17,7 +17,7 @@ export default function ContactPage() {
       title: 'Email',
       description: 'Drop me a line anytime',
       action: 'Send Email',
-      href: 'mailto:cbolt369@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Cameron,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ABest%20regards,',
+      href: 'https://mail.google.com/mail/?view=cm&fs=1&to=cbolt369@gmail.com&su=Portfolio%20Inquiry&body=Hi%20Cameron,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ABest%20regards,',
     },
     {
       icon: Linkedin,
@@ -71,7 +71,7 @@ export default function ContactPage() {
             Let&apos;s discuss how we can work together.
           </Body>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CustomButton href="mailto:cbolt369@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Cameron,%0A%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration.%0A%0ABest%20regards," size="lg" external>
+            <CustomButton href="https://mail.google.com/mail/?view=cm&fs=1&to=cbolt369@gmail.com&su=Let's%20Work%20Together&body=Hi%20Cameron,%0A%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration.%0A%0ABest%20regards," size="lg" external>
               <Mail className="mr-2 h-5 w-5" />
               Email me
             </CustomButton>

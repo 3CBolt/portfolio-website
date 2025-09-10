@@ -13,14 +13,16 @@ export default function Footer() {
         </div>
         <div className="flex items-center space-x-4">
           <Link
-            href="mailto:your-email@example.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=cbolt369@gmail.com&su=Portfolio%20Inquiry"
             className="text-muted-foreground hover:text-accent transition-colors focus-ring rounded-md p-1"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Mail className="h-5 w-5" />
             <span className="sr-only">Email</span>
           </Link>
           <Link
-            href="https://github.com/yourusername"
+            href="https://github.com/3CBolt"
             className="text-muted-foreground hover:text-accent transition-colors focus-ring rounded-md p-1"
             target="_blank"
             rel="noopener noreferrer"
@@ -29,7 +31,7 @@ export default function Footer() {
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/cameronbolton"
             className="text-muted-foreground hover:text-accent transition-colors focus-ring rounded-md p-1"
             target="_blank"
             rel="noopener noreferrer"
