@@ -31,9 +31,10 @@ export default function ProjectCard({ id, title, summary, tags = [], role, impac
           <div className="relative aspect-video overflow-hidden rounded-xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={coverImage} alt={`${title} cover`} className="h-full w-full object-cover group-hover:scale-105 transition-transform" />
-            {/* Status Icon */}
-            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full p-1.5`}>
+            {/* Status Badge */}
+            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full px-2 py-1 flex items-center gap-1`}>
               <StatusIcon className={`h-3 w-3 ${statusConfig.color}`} />
+              <span className={`text-xs font-medium ${statusConfig.color}`}>{status}</span>
             </div>
           </div>
         ) : (
@@ -41,9 +42,10 @@ export default function ProjectCard({ id, title, summary, tags = [], role, impac
             <div className="text-4xl font-bold text-accent/20">
               {title.charAt(0)}
             </div>
-            {/* Status Icon */}
-            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full p-1.5`}>
+            {/* Status Badge */}
+            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full px-2 py-1 flex items-center gap-1`}>
               <StatusIcon className={`h-3 w-3 ${statusConfig.color}`} />
+              <span className={`text-xs font-medium ${statusConfig.color}`}>{status}</span>
             </div>
           </div>
         )}
