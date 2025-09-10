@@ -17,10 +17,11 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 retro:bg-black retro:border-white retro:border-b-2">
-      <div className="max-w-6xl mx-auto px-5 flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
+      <div className="max-w-6xl mx-auto px-5 flex h-16 items-center justify-between">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center">
           <Link href="/" className="mr-8 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block text-xl text-foreground retro:font-retro retro:text-sm">
+            <span className="font-bold text-xl text-foreground retro:font-retro retro:text-sm">
               PORTFOLIO
             </span>
           </Link>
@@ -42,12 +43,8 @@ export default function Header() {
           </nav>
         </div>
         
-        <div className="ml-auto flex items-center gap-4">
-          <ThemeToggle />
-        </div>
-        
         {/* Mobile Navigation */}
-        <div className="flex flex-1 items-center justify-between space-x-2 md:hidden">
+        <div className="flex md:hidden items-center space-x-4">
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold text-xl text-foreground retro:font-retro retro:text-sm">PORTFOLIO</span>
           </Link>
@@ -66,8 +63,12 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <ThemeToggle />
           </nav>
+        </div>
+        
+        {/* Theme Toggle - Always on the right */}
+        <div className="flex items-center">
+          <ThemeToggle />
         </div>
       </div>
     </header>
