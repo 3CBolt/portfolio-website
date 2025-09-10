@@ -24,22 +24,6 @@ export default async function Page() {
           <ProjectsGrid initial={projects} />
         </Section>
         
-        {/* Case Studies Stub */}
-        <section id="case-studies" className="mt-16">
-          <Section>
-            <H2 className="mb-4">Case Studies</H2>
-            <Body className="text-muted-foreground">Coming soon.</Body>
-          </Section>
-        </section>
-        
-        {/* Experiments Stub */}
-        <section id="experiments" className="mt-16">
-          <Section>
-            <H2 className="mb-4">Experiments</H2>
-            <Body className="text-muted-foreground">Sandbox builds and UI studies.</Body>
-          </Section>
-        </section>
-        
         {/* Contact Section */}
         <section id="contact" className="mt-16">
           <Section className="text-center">
