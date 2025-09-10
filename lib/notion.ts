@@ -6,7 +6,7 @@ export const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   summary: z.string(),
-  status: z.enum(['Shipped','Live','Prototype','Archived']).default('Prototype'),
+  status: z.enum(['Completed','In Progress','Planned']).default('Planned'),
   tags: z.array(z.string()).default([]),
   role: z.string().optional(),
   dates: z.object({
@@ -32,31 +32,31 @@ export function projectFromNotion(page: PageObjectResponse): Project {
   const props: any = (page as any).properties ?? {};
   const get = (name: string) => props[name];
 
-  const title = get('Title')?.title?.[0]?.plain_text ?? '';
-  const summary = get('Summary')?.rich_text?.[0]?.plain_text ?? '';
+  const title = get('Project Name')?.title?.[0]?.plain_text ?? '';
+  const summary = get('Short Description')?.rich_text?.[0]?.plain_text ?? '';
   const status = get('Status')?.select?.name ?? 'Prototype';
-  const tags = (get('Tags')?.multi_select ?? []).map((t: any) => t.name);
+  const tags = (get('Tech/Skills')?.multi_select ?? []).map((t: any) => t.name);
   const role = get('Role')?.rich_text?.[0]?.plain_text ?? undefined;
-  const start = get('Dates')?.date?.start ?? undefined;
-  const end = get('Dates')?.date?.end ?? undefined;
+  const start = get('Date Range')?.date?.start ?? undefined;
+  const end = get('Date Range')?.date?.end ?? undefined;
   const impact = get('Impact')?.rich_text?.[0]?.plain_text ?? undefined;
   const coverImage =
+    get('CoverPath')?.rich_text?.[0]?.plain_text ??
     get('CoverImage')?.files?.[0]?.external?.url ??
     get('CoverImage')?.files?.[0]?.file?.url ??
     undefined;
   const caseStudyUrl = get('CaseStudyURL')?.url ?? undefined;
-  const techStack = (get('TechStack')?.multi_select ?? []).map((t: any) => t.name);
+  const techStack = (get('Tech/Skills')?.multi_select ?? []).map((t: any) => t.name);
   const metrics = (get('Metrics')?.rich_text ?? []).map((r: any) => r.plain_text);
   const responsibilities = (get('Responsibilities')?.rich_text ?? []).map((r: any) => r.plain_text);
   const outcome = get('Outcome')?.rich_text?.[0]?.plain_text ?? undefined;
   const learnings = (get('Learnings')?.rich_text ?? []).map((r: any) => r.plain_text);
 
-  const linksRel = get('Links')?.relations ?? [];
-  const linksUrl = get('Links')?.rich_text ?? [];
-  const links =
-    linksUrl.length > 0
-      ? linksUrl.map((r: any) => ({ label: r.plain_text || 'Link', url: r.href || r.plain_text }))
-      : linksRel.map((l: any) => ({ label: 'Link', url: l.url || '#' }));
+  const demoLink = get('Demo Link')?.url ?? '';
+  const repoLink = get('Repo Link')?.url ?? get('GitHub Repo')?.rich_text?.[0]?.plain_text ?? '';
+  const links = [];
+  if (demoLink) links.push({ label: 'Live Demo', url: demoLink });
+  if (repoLink) links.push({ label: 'View Code', url: repoLink });
 
   const data = {
     id: page.id,
@@ -91,8 +91,8 @@ export async function getProjects(): Promise<Project[]> {
       database_id: DB_ID,
       filter: {
         or: [
-          { property: 'Status', select: { equals: 'Shipped' } },
-          { property: 'Status', select: { equals: 'Live' } },
+          { property: 'Status', select: { equals: 'Completed' } },
+          { property: 'Status', select: { equals: 'In Progress' } },
         ],
       },
       sorts: [
@@ -126,7 +126,7 @@ export async function getProjects(): Promise<Project[]> {
 // Legacy compatibility functions
 export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects();
-  return projects.filter(project => project.status === 'Shipped' || project.status === 'Live');
+  return projects.filter(project => project.status === 'Completed' || project.status === 'In Progress');
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
