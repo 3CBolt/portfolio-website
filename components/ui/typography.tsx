@@ -8,7 +8,7 @@ interface TypographyProps {
 export function H1({ children, className, ...props }: TypographyProps) {
   return (
     <h1 className={cn(
-      'text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground retro:retro-title retro:text-3xl retro:md:text-4xl retro:lg:text-5xl',
+      'text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground retro:retro-title retro:text-8xl retro:sm:text-9xl retro:lg:text-[12rem] retro:text-white',
       className
     )} {...props}>
       {children}
@@ -19,7 +19,7 @@ export function H1({ children, className, ...props }: TypographyProps) {
 export function H2({ children, className, ...props }: TypographyProps) {
   return (
     <h2 className={cn(
-      'text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground retro:retro-title retro:text-xl retro:md:text-2xl retro:lg:text-3xl',
+      'text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground retro:retro-title retro:text-6xl retro:sm:text-7xl retro:lg:text-8xl retro:text-white',
       className
     )} {...props}>
       {children}
@@ -30,7 +30,7 @@ export function H2({ children, className, ...props }: TypographyProps) {
 export function H3({ children, className, ...props }: TypographyProps) {
   return (
     <h3 className={cn(
-      'text-xl sm:text-2xl font-semibold tracking-tight text-foreground retro:retro-title retro:text-lg retro:md:text-xl',
+      'text-xl sm:text-2xl font-semibold tracking-tight text-foreground retro:retro-title retro:text-2xl retro:sm:text-3xl retro:text-white',
       className
     )} {...props}>
       {children}
@@ -41,7 +41,7 @@ export function H3({ children, className, ...props }: TypographyProps) {
 export function Sub({ children, className, ...props }: TypographyProps) {
   return (
     <p className={cn(
-      'text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed retro:text-base retro:md:text-lg',
+      'text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed retro:text-xl retro:sm:text-2xl retro:lg:text-3xl retro:text-black',
       className
     )} {...props}>
       {children}
@@ -52,7 +52,7 @@ export function Sub({ children, className, ...props }: TypographyProps) {
 export function Meta({ children, className, ...props }: TypographyProps) {
   return (
     <p className={cn(
-      'text-sm text-muted-foreground font-medium retro:text-xs',
+      'text-sm text-muted-foreground font-medium retro:text-sm retro:text-black',
       className
     )} {...props}>
       {children}
@@ -63,7 +63,7 @@ export function Meta({ children, className, ...props }: TypographyProps) {
 export function Body({ children, className, ...props }: TypographyProps) {
   return (
     <p className={cn(
-      'text-base text-muted-foreground leading-relaxed retro:text-sm retro:leading-normal',
+      'text-base text-muted-foreground leading-relaxed retro:text-lg retro:leading-relaxed retro:text-black',
       className
     )} {...props}>
       {children}

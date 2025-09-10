@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { ArrowRight, Code, Palette, Rocket } from 'lucide-react';
 
 export const metadata = {
-  title: 'About',
-  description: 'Learn more about my background, skills, and what drives my passion for development.',
+  title: 'About Cameron Bolton',
+  description: 'Learn more about Cameron Bolton\'s background, skills, and what drives his passion for development.',
 };
 
 export default function AboutPage() {
@@ -64,10 +64,10 @@ export default function AboutPage() {
             </CustomButton>
           </div>
           
-          {/* Placeholder for photo */}
+          {/* Professional headshot */}
           <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-              <div className="text-8xl font-bold text-accent/30">YN</div>
+              <div className="text-8xl font-bold text-accent/30">CB</div>
             </div>
           </div>
         </div>

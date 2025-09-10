@@ -146,7 +146,7 @@
   }
   
   .nes-btn {
-    @apply uppercase font-bold text-sm px-4 py-2 border-2 border-white bg-background text-foreground;
+    @apply uppercase font-bold border-2 border-white;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
     transition: all 0.1s ease;
     letter-spacing: 0.05em;
@@ -163,11 +163,43 @@
   }
   
   .nes-btn-primary {
-    @apply bg-accent text-accent-foreground;
+    @apply bg-red-600 text-white;
+  }
+  
+  .nes-btn-secondary {
+    @apply bg-white text-red-600;
+  }
+  
+  .nes-btn-ghost {
+    @apply bg-transparent text-red-600;
+  }
+  
+  /* Force red text for all NES buttons */
+  .retro .nes-btn {
+    color: #dc2626 !important;
+  }
+  
+  .retro .nes-btn-secondary {
+    color: #dc2626 !important;
+  }
+  
+  .retro .nes-btn-ghost {
+    color: #dc2626 !important;
+  }
+  
+  /* Target button text specifically */
+  .retro a.nes-btn,
+  .retro button.nes-btn {
+    color: #dc2626 !important;
+  }
+  
+  .retro a.nes-btn-secondary,
+  .retro button.nes-btn-secondary {
+    color: #dc2626 !important;
   }
   
   .cartridge-card {
-    @apply bg-background border-2 border-white overflow-hidden;
+    @apply bg-white border-2 border-black overflow-hidden;
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
     position: relative;
   }

@@ -37,15 +37,17 @@ export async function getProjects(): Promise<Project[]> {
       return {
         id: page.id,
         projectName: getProperty(properties, 'Project Name', 'title'),
-        oneLiner: getProperty(properties, 'One-liner', 'rich_text'),
+        oneLiner: getProperty(properties, 'Short Description', 'rich_text') || getProperty(properties, 'One-liner', 'rich_text'),
         status: getProperty(properties, 'Status', 'select'),
-        role: getProperty(properties, 'Role', 'rich_text'),
+        role: getProperty(properties, 'Role', 'multi_select').join(', ') || getProperty(properties, 'Role', 'rich_text'),
         category: getProperty(properties, 'Category', 'select'),
-        techSkills: getProperty(properties, 'Tech/Skills', 'multi_select'),
-        dateRange: getProperty(properties, 'Date Range', 'rich_text'),
+        techSkills: getProperty(properties, 'Tech/Skills', 'multi_select').length > 0 
+          ? getProperty(properties, 'Tech/Skills', 'multi_select')
+          : getProperty(properties, 'Tech Stack', 'rich_text').split(',').map(tech => tech.trim()).filter(Boolean),
+        dateRange: getProperty(properties, 'Date Range', 'date') || getProperty(properties, 'Date Range', 'rich_text') || 'Date TBD',
         featured: getProperty(properties, 'Featured', 'checkbox'),
         demoLink: getProperty(properties, 'Demo Link', 'url'),
-        repoLink: getProperty(properties, 'Repo Link', 'url'),
+        repoLink: getProperty(properties, 'Repo Link', 'url') || getProperty(properties, 'GitHub Repo', 'rich_text'),
         impact: getProperty(properties, 'Impact', 'rich_text').split('\n').filter(Boolean),
         responsibilities: getProperty(properties, 'Responsibilities', 'rich_text').split('\n').filter(Boolean),
         coverPath: getProperty(properties, 'CoverPath', 'rich_text'),
@@ -105,6 +107,16 @@ function getProperty(properties: any, name: string, type: string): any {
       return prop.checkbox || false;
     case 'url':
       return prop.url || '';
+    case 'date':
+      if (prop.date?.start) {
+        const startDate = new Date(prop.date.start);
+        if (prop.date.end) {
+          const endDate = new Date(prop.date.end);
+          return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+        }
+        return startDate.toLocaleDateString();
+      }
+      return '';
     default:
       return '';
   }

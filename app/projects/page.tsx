@@ -4,8 +4,8 @@ import { Section } from '@/components/ui/section';
 import { H1, Sub, Meta } from '@/components/ui/typography';
 
 export const metadata = {
-  title: 'Projects',
-  description: 'A collection of my work including web applications, mobile apps, and design projects.',
+  title: 'Cameron Bolton - Projects',
+  description: 'A collection of Cameron Bolton\'s work including web applications, mobile apps, and design projects.',
 };
 
 export default async function ProjectsPage() {

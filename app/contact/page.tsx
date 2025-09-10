@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { Mail, Github, Linkedin, MessageCircle, Download } from 'lucide-react';
 
 export const metadata = {
-  title: 'Contact',
-  description: 'Get in touch to discuss opportunities, collaborations, or just to say hello.',
+  title: 'Contact Cameron Bolton',
+  description: 'Get in touch with Cameron Bolton to discuss opportunities, collaborations, or just to say hello.',
 };
 
 export default function ContactPage() {
@@ -17,21 +17,21 @@ export default function ContactPage() {
       title: 'Email',
       description: 'Drop me a line anytime',
       action: 'Send Email',
-      href: 'mailto:your-email@example.com',
+      href: 'mailto:cbolt369@gmail.com',
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
       description: 'Let\'s connect professionally',
       action: 'View Profile',
-      href: 'https://linkedin.com/in/yourusername',
+      href: 'https://www.linkedin.com/in/cameronbolton',
     },
     {
       icon: Github,
       title: 'GitHub',
       description: 'Check out my code',
       action: 'View Repositories',
-      href: 'https://github.com/yourusername',
+      href: 'https://github.com/3CBolt',
     },
   ];
 
@@ -54,7 +54,7 @@ export default function ContactPage() {
                 <Body>{method.description}</Body>
               </CardHeader>
               <CardContent>
-                <CustomButton variant="secondary" href={method.href} external className="w-full">
+                <CustomButton variant="secondary" href={method.href} external={method.href.startsWith('mailto:') || method.href.startsWith('http')} className="w-full">
                   {method.action}
                 </CustomButton>
               </CardContent>
@@ -67,15 +67,15 @@ export default function ContactPage() {
           <MessageCircle className="h-12 w-12 text-accent mx-auto mb-6" />
           <H2 className="mb-4">Ready to Start a Project?</H2>
           <Body className="mb-8 max-w-md mx-auto">
-            I'm currently available for freelance work and full-time opportunities.
-            Let's discuss how we can work together.
+            I&apos;m currently available for freelance work and full-time opportunities.
+            Let&apos;s discuss how we can work together.
           </Body>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CustomButton href="mailto:your-email@example.com" size="lg">
+            <CustomButton href="mailto:cbolt369@gmail.com" size="lg" external>
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
             </CustomButton>
-            <CustomButton variant="secondary" size="lg">
+            <CustomButton variant="secondary" size="lg" href="/files/cameron-bolton-resume.pdf" external>
               <Download className="mr-2 h-5 w-5" />
               Download Resume
             </CustomButton>

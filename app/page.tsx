@@ -7,8 +7,8 @@ import Link from 'next/link';
 import { ArrowRight, Download } from 'lucide-react';
 
 export const metadata = {
-  title: 'Home',
-  description: 'Full-stack developer and designer creating digital experiences that matter.',
+  title: 'Cameron Bolton - Full-Stack Developer',
+  description: 'Cameron Bolton is a full-stack developer and designer creating digital experiences that matter.',
 };
 
 export default async function HomePage() {
@@ -21,7 +21,7 @@ export default async function HomePage() {
         <div className="max-w-4xl mx-auto">
           <H1 className="mb-6">
             Hi, I'm{' '}
-            <span className="text-accent">Your Name</span>
+            <span className="text-accent retro:text-white">Cameron Bolton</span>
           </H1>
           <Sub className="mb-8 max-w-3xl mx-auto">
             Full-stack developer and designer creating digital experiences that matter.
@@ -32,7 +32,7 @@ export default async function HomePage() {
               View My Work
               <ArrowRight className="ml-2 h-5 w-5" />
             </CustomButton>
-            <CustomButton variant="secondary" size="lg">
+            <CustomButton variant="secondary" size="lg" href="/files/cameron-bolton-resume.pdf" external>
               <Download className="mr-2 h-5 w-5" />
               Download Resume
             </CustomButton>
@@ -79,7 +79,7 @@ export default async function HomePage() {
           </div>
           <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-              <div className="text-8xl font-bold text-accent/30">YN</div>
+              <div className="text-8xl font-bold text-accent/30">CB</div>
             </div>
           </div>
         </div>
