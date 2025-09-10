@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
       {/* Background: stars + subtle gradient for readability */}
@@ -17,7 +17,7 @@ export default function Hero() {
       />
 
       {/* Foreground */}
-      <div className="mx-auto max-w-4xl text-center">
+      <div className="mx-auto max-w-4xl text-center px-4">
         <h1 id="hero-heading" className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl lg:text-8xl">
           Making magic, one product at a time.
         </h1>

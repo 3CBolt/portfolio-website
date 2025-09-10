@@ -16,44 +16,46 @@ export default async function Page() {
   const projects = await getProjects();
 
   return (
-    <div className="px-5">
+    <>
       <Hero />
-      <About />
-      <Section>
-        <ProjectsGrid initial={projects} />
-      </Section>
-      
-      {/* Case Studies Stub */}
-      <section id="case-studies" className="mt-16">
+      <div className="px-5">
+        <About />
         <Section>
-          <H2 className="mb-4">Case Studies</H2>
-          <Body className="text-muted-foreground">Coming soon.</Body>
+          <ProjectsGrid initial={projects} />
         </Section>
-      </section>
-      
-      {/* Experiments Stub */}
-      <section id="experiments" className="mt-16">
-        <Section>
-          <H2 className="mb-4">Experiments</H2>
-          <Body className="text-muted-foreground">Sandbox builds and UI studies.</Body>
-        </Section>
-      </section>
-      
-      {/* Contact Section */}
-      <section id="contact" className="mt-16">
-        <Section className="text-center">
-          <div className="max-w-2xl mx-auto">
-            <H2 className="mb-4">Let&apos;s build something meaningful together.</H2>
-            <Body className="mb-6 text-muted-foreground">
-              Ready to collaborate on your next project? I&apos;d love to hear from you.
-            </Body>
-            <CustomButton href="/contact" size="lg" aria-label="Email me">
-              <Mail className="mr-2 h-5 w-5" />
-              Email me
-            </CustomButton>
-          </div>
-        </Section>
-      </section>
-    </div>
+        
+        {/* Case Studies Stub */}
+        <section id="case-studies" className="mt-16">
+          <Section>
+            <H2 className="mb-4">Case Studies</H2>
+            <Body className="text-muted-foreground">Coming soon.</Body>
+          </Section>
+        </section>
+        
+        {/* Experiments Stub */}
+        <section id="experiments" className="mt-16">
+          <Section>
+            <H2 className="mb-4">Experiments</H2>
+            <Body className="text-muted-foreground">Sandbox builds and UI studies.</Body>
+          </Section>
+        </section>
+        
+        {/* Contact Section */}
+        <section id="contact" className="mt-16">
+          <Section className="text-center">
+            <div className="max-w-2xl mx-auto">
+              <H2 className="mb-4">Let&apos;s build something meaningful together.</H2>
+              <Body className="mb-6 text-muted-foreground">
+                Ready to collaborate on your next project? I&apos;d love to hear from you.
+              </Body>
+              <CustomButton href="/contact" size="lg" aria-label="Email me">
+                <Mail className="mr-2 h-5 w-5" />
+                Email me
+              </CustomButton>
+            </div>
+          </Section>
+        </section>
+      </div>
+    </>
   );
 }
