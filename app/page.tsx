@@ -1,94 +1,59 @@
-import { getFeaturedProjects } from '@/lib/notion';
-import ProjectGrid from '@/components/projects/ProjectGrid';
-import { CustomButton } from '@/components/ui/custom-button';
+import { getProjects } from '@/lib/notion';
+import Hero from '@/components/sections/Hero';
+import About from '@/components/sections/About';
+import ProjectsGrid from '@/components/projects/ProjectsGrid';
 import { Section } from '@/components/ui/section';
-import { H1, H2, Sub, Body } from '@/components/ui/typography';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, Download } from 'lucide-react';
+import { H2, Body } from '@/components/ui/typography';
+import { CustomButton } from '@/components/ui/custom-button';
+import { Mail } from 'lucide-react';
 
 export const metadata = {
-  title: 'Cameron Bolton - Full-Stack Developer',
-  description: 'Cameron Bolton is a full-stack developer and designer creating digital experiences that matter.',
+  title: 'Cameron Bolton – Product Builder & PM',
+  description: 'I build AI-driven products that blend strategy, design, and code. Disney intern x3, founder of Genuine, builder of StreamerOS.',
 };
 
-export default async function HomePage() {
-  const featuredProjects = await getFeaturedProjects();
+export default async function Page() {
+  const projects = await getProjects();
 
   return (
     <div className="px-5">
-      {/* Hero Section */}
-      <Section className="text-center">
-        <div className="max-w-4xl mx-auto">
-          <H1 className="mb-6">
-            Hi, I'm{' '}
-            <span className="text-accent retro:text-white">Cameron Bolton</span>
-          </H1>
-          <Sub className="mb-8 max-w-3xl mx-auto">
-            Full-stack developer and designer creating digital experiences that matter.
-            I build scalable web applications with modern technologies.
-          </Sub>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CustomButton href="/projects" size="lg">
-              View My Work
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </CustomButton>
-            <CustomButton variant="secondary" size="lg" href="/files/cameron-bolton-resume.pdf" external>
-              <Download className="mr-2 h-5 w-5" />
-              Download Resume
-            </CustomButton>
-          </div>
-        </div>
-      </Section>
-
-      {/* Featured Projects */}
-      {featuredProjects.length > 0 && (
-        <Section>
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <H2>Featured Projects</H2>
-              <Body className="mt-2">
-                A selection of my best work
-              </Body>
-            </div>
-            <CustomButton variant="ghost" href="/projects">
-              View All Projects
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </CustomButton>
-          </div>
-          <ProjectGrid projects={featuredProjects} />
-        </Section>
-      )}
-
-      {/* About Snippet */}
+      <Hero />
+      <About />
       <Section>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <H2 className="mb-6">About Me</H2>
-            <Body className="mb-4">
-              I'm a passionate full-stack developer with expertise in modern web technologies.
-              I love building products that solve real problems and create meaningful user experiences.
+        <ProjectsGrid initial={projects} />
+      </Section>
+      
+      {/* Case Studies Stub */}
+      <section id="case-studies" className="mt-16">
+        <Section>
+          <H2 className="mb-4">Case Studies</H2>
+          <Body className="text-muted-foreground">Coming soon.</Body>
+        </Section>
+      </section>
+      
+      {/* Experiments Stub */}
+      <section id="experiments" className="mt-16">
+        <Section>
+          <H2 className="mb-4">Experiments</H2>
+          <Body className="text-muted-foreground">Sandbox builds and UI studies.</Body>
+        </Section>
+      </section>
+      
+      {/* Contact Section */}
+      <section id="contact" className="mt-16">
+        <Section className="text-center">
+          <div className="max-w-2xl mx-auto">
+            <H2 className="mb-4">Let&apos;s build something meaningful together.</H2>
+            <Body className="mb-6 text-muted-foreground">
+              Ready to collaborate on your next project? I&apos;d love to hear from you.
             </Body>
-            <Body className="mb-6">
-              When I'm not coding, you can find me exploring new technologies, contributing to open source,
-              or sharing knowledge with the developer community.
-            </Body>
-            <CustomButton variant="secondary" href="/about">
-              Learn More About Me
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <CustomButton href="/contact" size="lg" aria-label="Email me">
+              <Mail className="mr-2 h-5 w-5" />
+              Email me
             </CustomButton>
           </div>
-          <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
-            <Image
-              src="/images/cameron-bolton-headshot.jpg"
-              alt="Cameron Bolton - Professional headshot"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </Section>
+        </Section>
+      </section>
     </div>
   );
 }

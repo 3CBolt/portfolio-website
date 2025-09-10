@@ -1,5 +1,5 @@
 import { getProjects } from '@/lib/notion';
-import ProjectGrid from '@/components/projects/ProjectGrid';
+import ProjectsGrid from '@/components/projects/ProjectsGrid';
 import { Section } from '@/components/ui/section';
 import { H1, Sub, Meta } from '@/components/ui/typography';
 
@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
           </Meta>
         </div>
 
-        <ProjectGrid projects={projects} />
+        <ProjectsGrid initial={projects} />
       </Section>
     </div>
   );

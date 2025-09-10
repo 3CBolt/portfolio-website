@@ -18,23 +18,23 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Your Name - Portfolio',
-    template: '%s | Your Name',
-  },
-  description: 'Full-stack developer and designer creating digital experiences that matter.',
-  keywords: ['portfolio', 'developer', 'designer', 'full-stack', 'web development'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name',
+  title: 'Cameron Bolton – Product Builder & PM',
+  description: 'I build AI-driven products that blend strategy, design, and code. Disney intern x3, founder of Genuine, builder of StreamerOS.',
+  keywords: ['portfolio', 'product manager', 'developer', 'AI', 'Disney', 'Genuine', 'StreamerOS'],
+  authors: [{ name: 'Cameron Bolton' }],
+  creator: 'Cameron Bolton',
   openGraph: {
+    title: 'Cameron Bolton – Product Builder & PM',
+    description: 'Projects in AI, human verification, and creator analytics. Let\'s build something meaningful together.',
+    url: 'https://cameronbolton.dev',
+    siteName: 'Cameron Bolton Portfolio',
+    images: [{ url: 'https://cameronbolton.dev/og-cover.png' }],
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourportfolio.com',
-    siteName: 'Your Name Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@yourusername',
+    creator: '@3CBolt',
   },
 };
 

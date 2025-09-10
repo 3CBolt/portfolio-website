@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import '../../styles/retro.css';
 
 export type Theme = 'light' | 'dark' | 'retro';
 
@@ -13,10 +14,6 @@ type Ctx = {
 };
 
 const ThemeCtx = createContext<Ctx | null>(null);
-
-const loadRetroCss = async () => { 
-  await import('@/styles/retro.css'); 
-};
 
 function applyHtmlFlags(next: Theme) {
   const html = document.documentElement;
@@ -48,7 +45,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(initial);
     applyHtmlFlags(initial);
     if (initial === 'retro') {
-      loadRetroCss();
       // Check if we should show start screen
       const url = new URL(window.location.href);
       const force = url.searchParams.get('start') === '1';
@@ -64,7 +60,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('theme', t);
     applyHtmlFlags(t);
     if (t === 'retro') {
-      loadRetroCss();
       // Check if we should show start screen
       const url = new URL(window.location.href);
       const force = url.searchParams.get('start') === '1';

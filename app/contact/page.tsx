@@ -39,8 +39,8 @@ export default function ContactPage() {
     <div className="px-5">
       {/* Header */}
       <Section 
-        title="Let's Work Together"
-        subtitle="I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to connect, I'd love to hear from you."
+        title="Let's build something meaningful together."
+        subtitle="Ready to collaborate on your next project? I'd love to hear from you."
       >
         {/* Contact Methods */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mb-16">
@@ -73,7 +73,7 @@ export default function ContactPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <CustomButton href="mailto:cbolt369@gmail.com" size="lg" external>
               <Mail className="mr-2 h-5 w-5" />
-              Get In Touch
+              Email me
             </CustomButton>
             <CustomButton variant="secondary" size="lg" href="/files/cameron-bolton-resume.pdf" external>
               <Download className="mr-2 h-5 w-5" />

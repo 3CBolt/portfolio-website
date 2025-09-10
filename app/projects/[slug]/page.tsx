@@ -17,7 +17,7 @@ interface ProjectDetailPageProps {
 export async function generateStaticParams() {
   const projects = await getProjects();
   return projects.map((project) => ({
-    slug: project.slug,
+    slug: project.id,
   }));
 }
 
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
   }
 
   return {
-    title: project.projectName,
-    description: project.oneLiner,
+    title: project.title,
+    description: project.summary,
   };
 }
 
@@ -56,17 +56,17 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <div className="lg:col-span-2">
           {/* Hero Image */}
           <div className="aspect-video relative mb-8 rounded-2xl overflow-hidden bg-muted">
-            {project.coverPath ? (
+            {project.coverImage ? (
               <Image
-                src={project.coverPath}
-                alt={`${project.projectName} preview`}
+                src={project.coverImage}
+                alt={`${project.title} preview`}
                 fill
                 className="object-cover"
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
                 <div className="text-6xl font-bold text-accent/20">
-                  {project.projectName.charAt(0)}
+                  {project.title.charAt(0)}
                 </div>
               </div>
             )}
@@ -75,38 +75,31 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           {/* Project Header */}
           <div className="mb-8">
             <H1 className="mb-4">
-              {project.projectName}
+              {project.title}
             </H1>
-            {project.featured && (
+            {(project.status === 'Shipped' || project.status === 'Live') && (
               <div className="inline-block bg-accent text-accent-foreground px-3 py-1 rounded-lg text-sm font-medium mb-4">
-                Featured Project
+                {project.status} Project
               </div>
             )}
             
             <Sub className="mb-6">
-              {project.oneLiner}
+              {project.summary}
             </Sub>
           </div>
 
           {/* Project Details */}
           <div className="space-y-8">
             {/* Impact */}
-            {project.impact.length > 0 && (
+            {project.impact && (
               <div>
                 <H3 className="mb-4">Impact & Results</H3>
-                <ul className="space-y-3">
-                  {project.impact.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2.5 flex-shrink-0" />
-                      <Body>{item}</Body>
-                    </li>
-                  ))}
-                </ul>
+                <Body>{project.impact}</Body>
               </div>
             )}
 
             {/* Responsibilities */}
-            {project.responsibilities.length > 0 && (
+            {project.responsibilities && project.responsibilities.length > 0 && (
               <div>
                 <H3 className="mb-4">Key Responsibilities</H3>
                 <ul className="space-y-3">
@@ -127,18 +120,12 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           <div className="lg:sticky lg:top-8 space-y-6">
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
-              {project.demoLink && (
-                <CustomButton href={project.demoLink} external>
+              {project.links.map((link, index) => (
+                <CustomButton key={index} href={link.url} external>
                   <ExternalLink className="mr-2 h-4 w-4" />
-                  Live Demo
+                  {link.label}
                 </CustomButton>
-              )}
-              {project.repoLink && (
-                <CustomButton variant="secondary" href={project.repoLink} external>
-                  <Github className="mr-2 h-4 w-4" />
-                  View Code
-                </CustomButton>
-              )}
+              ))}
             </div>
 
             {/* Project Meta */}
@@ -148,21 +135,30 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                   <Calendar className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <Meta className="font-semibold text-foreground">Timeline</Meta>
-                    <Meta>{formatDateRange(project.dateRange)}</Meta>
+                    <Meta>
+                      {project.dates.start && project.dates.end 
+                        ? `${new Date(project.dates.start).toLocaleDateString()} - ${new Date(project.dates.end).toLocaleDateString()}`
+                        : project.dates.start 
+                        ? new Date(project.dates.start).toLocaleDateString()
+                        : 'Ongoing'
+                      }
+                    </Meta>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <User className="h-5 w-5 text-muted-foreground" />
-                  <div>
-                    <Meta className="font-semibold text-foreground">Role</Meta>
-                    <Meta>{project.role}</Meta>
+                {project.role && (
+                  <div className="flex items-center gap-3">
+                    <User className="h-5 w-5 text-muted-foreground" />
+                    <div>
+                      <Meta className="font-semibold text-foreground">Role</Meta>
+                      <Meta>{project.role}</Meta>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="flex items-center gap-3">
                   <Tag className="h-5 w-5 text-muted-foreground" />
                   <div>
-                    <Meta className="font-semibold text-foreground">Category</Meta>
-                    <Meta>{project.category}</Meta>
+                    <Meta className="font-semibold text-foreground">Status</Meta>
+                    <Meta>{project.status}</Meta>
                   </div>
                 </div>
               </CardContent>
@@ -172,7 +168,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             <div>
               <H3 className="mb-3">Technologies Used</H3>
               <div className="flex flex-wrap gap-2">
-                {project.techSkills.map((tech) => (
+                {project.techStack.map((tech) => (
                   <span key={tech} className="bg-muted text-muted-foreground px-3 py-1.5 rounded-lg text-sm font-medium">
                     {tech}
                   </span>
