@@ -6,32 +6,32 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section
-      className="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4"
       aria-labelledby="hero-heading"
     >
       {/* Background: stars + subtle gradient for readability */}
       <StarsBackground className="absolute inset-0 -z-10" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/40 to-background/80"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/50 to-background/90"
       />
 
       {/* Foreground */}
-      <div className="mx-auto max-w-3xl text-center">
-        <h1 id="hero-heading" className="text-4xl font-bold tracking-tight sm:text-6xl">
+      <div className="mx-auto max-w-4xl text-center">
+        <h1 id="hero-heading" className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl lg:text-8xl">
           Making magic, one product at a time.
         </h1>
 
-        <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+        <p className="mt-6 text-lg text-muted-foreground sm:text-xl lg:text-2xl">
           I build AI-driven products that blend strategy, design, and code. <br />
           Disney intern x3, founder of Genuine, builder of StreamerOS.
         </p>
 
-        <div className="mt-8 flex items-center justify-center gap-3">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
           <Link
             href="#projects"
             aria-label="See my work"
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="rounded-xl bg-primary px-8 py-3 text-base font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200"
           >
             See my work
           </Link>
@@ -39,7 +39,7 @@ export default function Hero() {
           <Link
             href="#contact"
             aria-label="Contact me"
-            className="rounded-lg border px-4 py-2 text-sm font-medium hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
+            className="rounded-xl border-2 border-primary/20 bg-background/80 px-8 py-3 text-base font-semibold text-foreground backdrop-blur-sm hover:border-primary/40 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200"
           >
             Contact me
           </Link>
