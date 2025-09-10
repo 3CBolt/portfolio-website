@@ -2,6 +2,7 @@ import { CustomButton } from '@/components/ui/custom-button';
 import { CustomCard, CardHeader, CardContent } from '@/components/ui/custom-card';
 import { Section } from '@/components/ui/section';
 import { H1, H2, H3, Sub, Body } from '@/components/ui/typography';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Code, Palette, Rocket } from 'lucide-react';
 

@@ -3,6 +3,7 @@ import ProjectGrid from '@/components/projects/ProjectGrid';
 import { CustomButton } from '@/components/ui/custom-button';
 import { Section } from '@/components/ui/section';
 import { H1, H2, Sub, Body } from '@/components/ui/typography';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Download } from 'lucide-react';
 
