@@ -1,10 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { CheckCircle, Clock, Lightbulb, Play } from 'lucide-react';
 import type { Project } from '@/lib/notion';
 
-type Props = Pick<Project,'id'|'title'|'summary'|'tags'|'role'|'impact'|'coverImage'|'links'>;
+type Props = Pick<Project,'id'|'title'|'summary'|'tags'|'role'|'impact'|'coverImage'|'links'|'status'>;
 
-export default function ProjectCard({ id, title, summary, tags = [], role, impact, coverImage, links = [] }: Props) {
+function getStatusIcon(status: string) {
+  switch (status) {
+    case 'Complete':
+      return { icon: CheckCircle, color: 'text-green-500', bgColor: 'bg-green-100 dark:bg-green-900/20' };
+    case 'Shipped':
+      return { icon: CheckCircle, color: 'text-blue-500', bgColor: 'bg-blue-100 dark:bg-blue-900/20' };
+    case 'In Progress':
+      return { icon: Play, color: 'text-orange-500', bgColor: 'bg-orange-100 dark:bg-orange-900/20' };
+    case 'Ideation':
+      return { icon: Lightbulb, color: 'text-yellow-500', bgColor: 'bg-yellow-100 dark:bg-yellow-900/20' };
+    default:
+      return { icon: Clock, color: 'text-gray-500', bgColor: 'bg-gray-100 dark:bg-gray-900/20' };
+  }
+}
+
+export default function ProjectCard({ id, title, summary, tags = [], role, impact, coverImage, links = [], status }: Props) {
+  const statusConfig = getStatusIcon(status);
+  const StatusIcon = statusConfig.icon;
+  
   return (
     <article className="group rounded-2xl border p-4 focus-within:ring-2 hover:shadow-lg transition-shadow">
       <Link href={`/projects/${id}`} className="block">
@@ -12,11 +31,19 @@ export default function ProjectCard({ id, title, summary, tags = [], role, impac
           <div className="relative aspect-video overflow-hidden rounded-xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={coverImage} alt={`${title} cover`} className="h-full w-full object-cover group-hover:scale-105 transition-transform" />
+            {/* Status Icon */}
+            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full p-1.5`}>
+              <StatusIcon className={`h-3 w-3 ${statusConfig.color}`} />
+            </div>
           </div>
         ) : (
           <div className="relative aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
             <div className="text-4xl font-bold text-accent/20">
               {title.charAt(0)}
+            </div>
+            {/* Status Icon */}
+            <div className={`absolute top-2 right-2 ${statusConfig.bgColor} rounded-full p-1.5`}>
+              <StatusIcon className={`h-3 w-3 ${statusConfig.color}`} />
             </div>
           </div>
         )}
