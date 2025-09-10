@@ -54,14 +54,19 @@ export function CustomButton({
     if (external) {
       // For mailto links, don't use target="_blank"
       const isMailto = href.startsWith('mailto:');
+      const linkProps: any = {
+        href,
+        className: baseClasses,
+        style: getInlineStyles()
+      };
+      
+      if (!isMailto) {
+        linkProps.target = "_blank";
+        linkProps.rel = "noopener noreferrer";
+      }
+      
       return (
-        <a 
-          href={href} 
-          target={isMailto ? undefined : "_blank"}
-          rel={isMailto ? undefined : "noopener noreferrer"}
-          className={baseClasses}
-          style={getInlineStyles()}
-        >
+        <a {...linkProps}>
           {children}
         </a>
       );
