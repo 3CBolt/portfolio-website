@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailto Test - Cameron Bolton</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f0f8ff;
+            border: 1px solid #0066cc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .test-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e6f3ff;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #0066cc;
+            border: 1px solid #b3d9ff;
+        }
+        .test-link:hover {
+            background: #cce7ff;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>📧 Mailto Link Test</h1>
+    
+    <div class="status info">
+        <strong>Purpose:</strong> This page tests if mailto links work on your system. If these links don't work, the issue is with your browser/system configuration, not the portfolio code.
+    </div>
+
+    <div class="test-section">
+        <h2>Test 1: Basic Mailto Link</h2>
+        <a href="mailto:cbolt369@gmail.com" class="test-link">
+            📧 Click here to email Cameron Bolton (basic)
+        </a>
+        <p><strong>Expected:</strong> Should open your default email client with a new message to cbolt369@gmail.com</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Mailto with Subject</h2>
+        <a href="mailto:cbolt369@gmail.com?subject=Portfolio%20Inquiry" class="test-link">
+            📧 Click here to email with subject line
+        </a>
+        <p><strong>Expected:</strong> Should open email client with subject "Portfolio Inquiry" pre-filled</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Mailto with Subject and Body</h2>
+        <a href="mailto:cbolt369@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Cameron,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ABest%20regards," class="test-link">
+            📧 Click here to email with subject and body
+        </a>
+        <p><strong>Expected:</strong> Should open email client with subject and body pre-filled</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: JavaScript Mailto (Alternative Method)</h2>
+        <button onclick="window.location.href='mailto:cbolt369@gmail.com?subject=JavaScript%20Test'" class="test-link" style="border: none; cursor: pointer; width: 100%; text-align: left;">
+            📧 Click here to test JavaScript mailto
+        </button>
+        <p><strong>Expected:</strong> Should work the same as the direct links above</p>
+    </div>
+
+    <div class="status info">
+        <h3>🔍 Troubleshooting:</h3>
+        <ul>
+            <li><strong>If none of these work:</strong> Your system doesn't have a default email client configured, or your browser blocks mailto links</li>
+            <li><strong>If some work but others don't:</strong> There might be an issue with the specific mailto format</li>
+            <li><strong>If they all work:</strong> The issue is specifically with the portfolio site, not your system</li>
+        </ul>
+    </div>
+
+    <div class="status info">
+        <h3>🛠️ How to Fix:</h3>
+        <ul>
+            <li><strong>macOS:</strong> Go to System Preferences → General → Default email reader</li>
+            <li><strong>Windows:</strong> Go to Settings → Apps → Default apps → Email</li>
+            <li><strong>Browser:</strong> Check if mailto links are blocked in browser settings</li>
+        </ul>
+    </div>
+
+    <script>
+        // Add click tracking to see if links are being clicked
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                console.log('Mailto link clicked:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
