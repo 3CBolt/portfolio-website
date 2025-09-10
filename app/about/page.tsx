@@ -162,7 +162,7 @@ export default function AboutPage() {
           <H2 className="text-center mb-12">Future Vision</H2>
           <div className="max-w-4xl mx-auto text-center">
             <Body className="text-lg mb-6">
-              I want to keep building products at the intersection of technology and storytelling. My long term goal is to create at Marvel Studios.
+              I want to keep building products at the intersection of technology and storytelling. My long term goal is to continue to push the boundaries of technology and build products that solve real problems, creating meaningful impact through innovative solutions that make a difference in people's lives.
             </Body>
             <CustomButton href="/contact">
               Email Me
