@@ -79,9 +79,13 @@ export default async function HomePage() {
             </CustomButton>
           </div>
           <div className="aspect-square relative bg-muted rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-              <div className="text-8xl font-bold text-accent/30">CB</div>
-            </div>
+            <Image
+              src="/images/cameron-bolton-headshot.jpg"
+              alt="Cameron Bolton - Professional headshot"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </Section>
